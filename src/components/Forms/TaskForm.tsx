@@ -1,10 +1,16 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useState,
+} from "react";
 import { ITask } from "./../../interface/Task";
 
 type Props = {
   btnText: string;
   taskList: ITask[];
-  setTaskList?: React.Dispatch<React.SetStateAction<ITask[]>>;
+  setTaskList?: Dispatch<SetStateAction<ITask[]>>;
 };
 
 const TaskForm = ({ btnText, taskList, setTaskList }: Props) => {

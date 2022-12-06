@@ -4,6 +4,7 @@ import TaskForm from "./components/Forms/TaskForm";
 import TaksItems from "./components/Forms/TaksItems";
 import { ITask } from "./interface/Task";
 import { useState } from "react";
+import EditModal from "./components/Forms/EditModal";
 
 function App() {
   const [taskList, setTaskList] = useState<ITask[]>([]);
@@ -16,8 +17,25 @@ function App() {
     );
   };
 
+  const hideShoweModal = (display: boolean): void => {
+    const modal = document.querySelector("#modal");
+
+    if (display) {
+      modal!.classList.remove("hidden");
+    } else {
+      modal!.classList.add("hidden");
+    }
+  };
+
+  const editTask = (): void => {
+    hideShoweModal(true);
+  };
+
   return (
     <div>
+      <EditModal
+        children={<TaskForm btnText={"Alterar"} taskList={taskList} />}
+      />
       <NavBar />
       <div className="h-[75vh] flex flex-col items-center justify-center">
         <div className="space-y-8">
@@ -33,7 +51,11 @@ function App() {
           <div>
             <h2 className="font-bold text-lg">Suas tarefas:</h2>
 
-            <TaksItems taskList={taskList} handleDelete={deleteTask} />
+            <TaksItems
+              taskList={taskList}
+              handleDelete={deleteTask}
+              handleEdit={editTask}
+            />
           </div>
         </div>
       </div>
