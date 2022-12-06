@@ -1,16 +1,29 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import { ITask } from "./../../interface/Task";
 
 type Props = {
   btnText: string;
+  taskList: ITask[];
+  setTaskList?: React.Dispatch<React.SetStateAction<ITask[]>>;
 };
 
-const TaskForm = ({ btnText }: Props) => {
+const TaskForm = ({ btnText, taskList, setTaskList }: Props) => {
   const [id, setId] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
   const [asHard, setAsHard] = useState<number>(0);
 
-  const addTaskHandler = () => {};
+  const addTaskHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const id = Math.floor(Math.random() * 1000);
+
+    const newTask: ITask = { id, title, asHard };
+
+    setTaskList!([...taskList, newTask]);
+
+    setTitle("");
+    setAsHard(0);
+  };
 
   const hadleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === "title") {
@@ -18,9 +31,6 @@ const TaskForm = ({ btnText }: Props) => {
     } else {
       setAsHard(parseInt(e.target.value));
     }
-
-    console.log(title);
-    console.log(asHard);
   };
 
   return (
@@ -35,6 +45,7 @@ const TaskForm = ({ btnText }: Props) => {
             type="text"
             name="title"
             onChange={hadleChange}
+            value={title}
             className="border border-gray-600 rounded-md ml-5 p-2"
           />
         </label>
@@ -44,6 +55,7 @@ const TaskForm = ({ btnText }: Props) => {
           <input
             type="number"
             name="asHard"
+            value={asHard}
             onChange={hadleChange}
             className="border border-gray-600 rounded-md ml-5 p-2"
           />

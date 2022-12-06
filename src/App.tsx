@@ -3,8 +3,11 @@ import Footer from "./components/Footer";
 import TaskForm from "./components/Forms/TaskForm";
 import TaksItems from "./components/Forms/TaksItems";
 import { ITask } from "./interface/Task";
+import { useState } from "react";
 
 function App() {
+  const [taskList, setTaskList] = useState<ITask[]>([]);
+
   return (
     <div>
       <NavBar />
@@ -12,7 +15,11 @@ function App() {
         <div className="space-y-8">
           <div>
             <h1 className="font-bold text-lg">O que você vai fazer?</h1>
-            <TaskForm btnText={"Criar Tarefa"} />
+            <TaskForm
+              btnText={"Criar Tarefa"}
+              taskList={taskList}
+              setTaskList={setTaskList}
+            />
           </div>
 
           <div>
