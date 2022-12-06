@@ -2,6 +2,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import TaskForm from "./components/Forms/TaskForm";
 import TaksItems from "./components/Forms/TaksItems";
+import { ITask } from "./interface/Task";
 
 function App() {
   return (
