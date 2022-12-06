@@ -25,7 +25,7 @@ function App() {
           <div>
             <h2 className="font-bold text-lg">Suas tarefas:</h2>
 
-            <TaksItems />
+            <TaksItems taskList={taskList} />
           </div>
         </div>
       </div>
