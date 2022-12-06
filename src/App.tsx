@@ -8,6 +8,14 @@ import { useState } from "react";
 function App() {
   const [taskList, setTaskList] = useState<ITask[]>([]);
 
+  const deleteTask = (id: number) => {
+    setTaskList(
+      taskList.filter((task) => {
+        return task.id !== id;
+      })
+    );
+  };
+
   return (
     <div>
       <NavBar />
@@ -25,7 +33,7 @@ function App() {
           <div>
             <h2 className="font-bold text-lg">Suas tarefas:</h2>
 
-            <TaksItems taskList={taskList} />
+            <TaksItems taskList={taskList} handleDelete={deleteTask} />
           </div>
         </div>
       </div>

@@ -4,9 +4,10 @@ import { Trash, Pen } from "phosphor-react";
 
 type Props = {
   taskList: ITask[];
+  handleDelete(id: number): void;
 };
 
-const TaksItems = ({ taskList }: Props) => {
+const TaksItems = ({ taskList, handleDelete }: Props) => {
   return (
     <>
       {taskList.length > 0 ? (
@@ -21,7 +22,12 @@ const TaksItems = ({ taskList }: Props) => {
             </div>
 
             <div>
-              <Trash size={22} />
+              <Trash
+                size={22}
+                onClick={() => {
+                  handleDelete(task.id);
+                }}
+              />
               <Pen size={22} />
             </div>
           </div>
