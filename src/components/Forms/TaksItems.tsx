@@ -5,7 +5,7 @@ import { Trash, Pen } from "phosphor-react";
 type Props = {
   taskList: ITask[];
   handleDelete(id: number): void;
-  handleEdit(): void;
+  handleEdit(task: ITask): void;
 };
 
 const TaksItems = ({ taskList, handleDelete, handleEdit }: Props) => {
@@ -32,7 +32,7 @@ const TaksItems = ({ taskList, handleDelete, handleEdit }: Props) => {
               <Pen
                 size={22}
                 onClick={() => {
-                  handleEdit();
+                  handleEdit(task);
                 }}
               />
             </div>

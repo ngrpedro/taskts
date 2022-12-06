@@ -8,6 +8,7 @@ import EditModal from "./components/Forms/EditModal";
 
 function App() {
   const [taskList, setTaskList] = useState<ITask[]>([]);
+  const [taskToUpdate, setTaskToUpdate] = useState<ITask | null>(null);
 
   const deleteTask = (id: number) => {
     setTaskList(
@@ -27,14 +28,21 @@ function App() {
     }
   };
 
-  const editTask = (): void => {
+  const editTask = (task: ITask): void => {
     hideShoweModal(true);
+    setTaskToUpdate(task);
   };
 
   return (
     <div>
       <EditModal
-        children={<TaskForm btnText={"Alterar"} taskList={taskList} />}
+        children={
+          <TaskForm
+            btnText={"Alterar"}
+            taskList={taskList}
+            task={taskToUpdate}
+          />
+        }
       />
       <NavBar />
       <div className="h-[75vh] flex flex-col items-center justify-center">
